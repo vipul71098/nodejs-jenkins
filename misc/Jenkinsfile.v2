@@ -9,10 +9,8 @@ node {
      def myTestContainer = docker.image('node:4.6')
      myTestContainer.pull()
      myTestContainer.inside {
-       sh 'rm -rf ~/.node-gyp'
-       sh 'npm cache clean -f'
-       sh 'npm install -g n'
-       sh 'npm install --unsafe-perm'
+       sh 'mkdir /.npm'
+       sh 'npm install --only=dev'
        sh 'npm test'
      }
    }
